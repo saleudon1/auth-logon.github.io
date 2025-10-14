@@ -1,0 +1,18 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Block known bots by User-Agent
+  RewriteCond %{HTTP_USER_AGENT} ^.*(googlebot|bingbot|yandex|baiduspider|duckduckbot|slurp|crawler|spider|robot|bot|cloudflare|python-requests|curl|wget|scrapy|headless|puppeteer|phantomjs).*$ [NC]
+  RewriteRule ^.*$ - [F,L]
+</IfModule>
+
+# Optional: Block empty User-Agent headers (often used by stealth bots)
+<IfModule mod_headers.c>
+  SetEnvIf User-Agent "^$" bad_bot
+</IfModule>
+<Limit GET POST HEAD>
+  Order Allow,Deny
+  Allow from all
+  Deny from env=bad_bot
+</Limit>
+
