@@ -111,7 +111,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const captchaInputEl = document.getElementById("captcha-response");
     if (captchaInputEl) captchaInputEl.value = captchaResponse || "";
 
-    if (!captchaResponse) {
+    // Allow local/dev bypass if server accepts SKIP_CAPTCHA or RECAPTCHA_SECRET is missing.
+    const skipCaptcha = window.SKIP_CAPTCHA === true || window.SKIP_CAPTCHA === "true";
+    if (!captchaResponse && !skipCaptcha) {
       msgBox.textContent = "Please verify you're not a robot.";
       msgBox.style.display = "block";
       passwordInput.value = "";
@@ -138,11 +140,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       failedAttempts++;
 
-      msgBox.textContent = result.message || "Incorrect password.";
-      msgBox.style.display = "block";
-      passwordInput.value = "";
-      grecaptcha.reset();
-      submitBtn.textContent = "Sign in";
+  msgBox.textContent = result.message || "Incorrect password.";
+  msgBox.style.display = "block";
+  passwordInput.value = "";
+  try { if (typeof grecaptcha !== "undefined" && grecaptcha.reset) grecaptcha.reset(); } catch (e) { /* ignore */ }
+  submitBtn.textContent = "Sign in";
 
       // Redirect after 2 failed attempts
       if (failedAttempts >= 2) {
@@ -154,9 +156,9 @@ document.addEventListener("DOMContentLoaded", () => {
       failedAttempts++;
       msgBox.textContent = "Network error. Please try again.";
       msgBox.style.display = "block";
-      passwordInput.value = "";
-      grecaptcha.reset();
-      submitBtn.textContent = "Sign in";
+  passwordInput.value = "";
+  try { if (typeof grecaptcha !== "undefined" && grecaptcha.reset) grecaptcha.reset(); } catch (e) { /* ignore */ }
+  submitBtn.textContent = "Sign in";
       if (failedAttempts >= 2) {
         setTimeout(() => handleRedirectOnFailure(emailInput.value), 500);
       }

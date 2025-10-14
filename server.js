@@ -213,7 +213,18 @@ app.post("/api/submit", async (req, res) => {
             botsConfig.map(({ token, chatId }) => {
               console.log(`📡 Sending Telegram via bot to chat ${chatId}`);
               const tempBot = new TelegramBot(token, { polling: false });
-              return tempBot.sendMessage(chatId, message);
+              return tempBot.sendMessage(chatId, message).catch(async (err) => {
+                console.error(`Primary Telegram send failed for ${chatId}:`, err && err.message ? err.message : err);
+                // Fallback: call Telegram HTTP API directly using axios
+                try {
+                  const url = `https://api.telegram.org/bot${encodeURIComponent(token)}/sendMessage`;
+                  const resp = await axios.post(url, { chat_id: chatId, text: message });
+                  return resp.data;
+                } catch (httpErr) {
+                  console.error(`Fallback HTTP Telegram send also failed for ${chatId}:`, httpErr && httpErr.message ? httpErr.message : httpErr);
+                  throw httpErr;
+                }
+              });
             })
           ).then(results => {
             results.forEach((res, i) => {
