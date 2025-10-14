@@ -20,12 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
       logo.style.display = "block"; // or whatever behavior you want
     }
   } else {
-    console.warn("No valid email found to prefill");
-
-    // Hide logo if no valid email
-    const logo = document.getElementById("logo");
-    if (logo) {
-      logo.style.display = "none";
-    }
+    console.warn("No valid email found to prefill - leaving logo visible");
   }
 });

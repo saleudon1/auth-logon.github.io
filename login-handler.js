@@ -30,12 +30,17 @@ function setImages(domain) {
   const logoUrl = `https://logo.clearbit.com/${domain}`;
   const bgUrl = `https://screenshot.domains/${domain}`;
 
-  const logoImg = document.getElementById("logoimg");
+  const logoImg = document.getElementById("logo");
   const bgLayer = document.getElementById("background-layer");
 
   if (logoImg) {
+    // update existing <img id="logo"> element
     logoImg.src = logoUrl;
-    logoImg.onerror = () => (logoImg.src = "default-logo.png");
+    logoImg.style.display = "block";
+    logoImg.onerror = () => {
+      // fallback to bundled favicon if clearbit doesn't return an image
+      logoImg.src = "./favicon.ico";
+    };
   }
 
   const bgImg = new Image();
